@@ -5,6 +5,7 @@
 #include<QGraphicsItem>
 #include<QPointF>
 #include<QObject>
+#include<QTimer>
 
 class enemyTower3: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
@@ -21,6 +22,8 @@ public:
     void attack_target();
     bool target_exist ;
     int hp;
+    QTimer * timer = new QTimer();
+    QTimer * timerd = new QTimer();
     ~enemyTower3();
 
 public slots:

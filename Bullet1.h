@@ -12,7 +12,6 @@ public:
     Bullet1(QGraphicsItem * parent=0);
     QTimer * move_timer = new QTimer(this);
     ~Bullet1();
-    int from;
 
 public slots:
     void move();

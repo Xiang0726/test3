@@ -18,6 +18,7 @@ public:
     QPointF target;
     int hp;
     QTimer * move_timer = new QTimer(this);
+    QTimer * hurt_timer = new QTimer(this);
 
 public slots:
     void move();

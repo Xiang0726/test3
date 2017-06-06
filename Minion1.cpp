@@ -19,76 +19,60 @@
 extern Game * game;
 
 Minion1::Minion1(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
-    //define HP
-     hp = 10;
+    // define HP
+    hp = 10;
 
-    //define team
-     team = 1;
-
-   //draw pic
+    // draw pic
     setPixmap(QPixmap(":images/Minion.png"));
 
-   //set  timer
-
+    // set timer for move
     connect(move_timer,SIGNAL(timeout()),this,SLOT(move()));
     move_timer->start(200);
 
+    // set timer for hurt
     connect(hurt_timer,SIGNAL(timeout()),this,SLOT(hurt()));
     hurt_timer->start(200);
 
+    // create a polygon
+    QVector<QPointF> points;
+    points << QPoint(1,0) << QPoint(2,0) << QPoint(3,1) << QPoint(3,2) << QPoint(2,3)
+           << QPoint(1,3) << QPoint(0,2) << QPoint(0,1);
 
-
-
-
-
-   //create a polygon
-
-   QVector<QPointF> points;
-   points << QPoint(1,0) << QPoint(2,0) << QPoint(3,1) << QPoint(3,2) << QPoint(2,3)
-         << QPoint(1,3) << QPoint(0,2) << QPoint(0,1);
-   //scale polygon
-   int i,n;
-   int scale = 80;
-   for(i=0,n=points.size();i<n;i++){
+    // scale polygon
+    int i,n;
+    int scale = 80;
+    for(i=0,n=points.size();i<n;i++){
        points[i]=points[i]*scale;
-   }
-
-   //create polygonitem
-   attack_area = new QGraphicsPolygonItem(QPolygonF(points),this);
-
-   //match polygon and minion
-   QPointF poly_center(1.5,1.5);
-   poly_center = poly_center * scale;
-   poly_center = mapToScene(poly_center);
-   QPointF Minion_center(x()+28,y()+40);
-   QLineF ln(poly_center,Minion_center);
-   attack_area->setPos(x()+ln.dx(),y()+ln.dy());
 }
 
-Minion1::~Minion1()
-{
-   move_timer->stop();
-   delete move_timer;
+    // create polygonitem
+    attack_area = new QGraphicsPolygonItem(QPolygonF(points),this);
+
+    // match polygon and minion
+    QPointF poly_center(1.5,1.5);
+    poly_center = poly_center * scale;
+    poly_center = mapToScene(poly_center);
+    QPointF Minion_center(x()+28,y()+40);
+    QLineF ln(poly_center,Minion_center);
+    attack_area->setPos(x()+ln.dx(),y()+ln.dy());
 }
 
-void Minion1::attack()
-{
+Minion1::~Minion1(){
+    // delete timer
+    move_timer->stop();
+    delete move_timer;
+    hurt_timer->stop();
+    delete hurt_timer;
+}
+
+void Minion1::attack(){
     QLineF lnn(this -> pos(),target);
     int angle = -1 * lnn.angle();
     Bullet1 *bullet1 = new Bullet1;
-    bullet1 ->from = 1;
     bullet1 -> setPos(x(),y());
     bullet1 ->setRotation(angle);
     game -> scene -> addItem(bullet1);
-   // has = false;
 }
-
-
-
-
-
-
-
 
 void Minion1::move(){
      int closedistance=200;
@@ -127,7 +111,6 @@ void Minion1::move(){
                      setPos(x()-10,y());
          }}
          else if( dynamic_cast<Enemy1*>(colliding_items[i])){
-         //setPos(x()-5,y());
          QLineF ln(this->pos(),colliding_items[i]->pos());
          int distance = ln.length();
 
@@ -138,43 +121,28 @@ void Minion1::move(){
                }
             }
          else if(dynamic_cast<Minion1*>(colliding_items[i])==this){ continue;}
-
-
            }
 
      if(has == true){
         attack();
-     }
+                    }
+
      if(this->hp <= 0){
          scene() ->removeItem(this);
          delete this;
-     }
+                      }
 
      if (pos().x()>1300){
              scene()->removeItem(this);
              delete this;
-
-     }
+                        }
 }
 
-void Minion1::hurt()
-{
+void Minion1::hurt(){
     QList<QGraphicsItem *> colliding_items = attack_area -> collidingItems();
-    for (int i = 0, n = colliding_items.size(); i < n; ++i){
-        if(dynamic_cast<TBullet1*>(colliding_items[i])){
-                              this->hp--;
-                         }
-        else if(dynamic_cast<Bullet10*>(colliding_items[i])){
-                              this->hp--;
-                         }
+    for (int i = 0, n = colliding_items.size(); i < n; ++i)
+    {
+        if(dynamic_cast<TBullet1*>(colliding_items[i])){ this->hp--; }
+        else if(dynamic_cast<Bullet10*>(colliding_items[i])){ this->hp--; }
     }
 }
-
-
-
-
-
-
-
-
-

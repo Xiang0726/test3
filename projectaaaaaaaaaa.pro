@@ -25,7 +25,8 @@ SOURCES += main.cpp \
     Bullet3.cpp \
     TBullet1.cpp \
     enemyTower2.cpp \
-    enemyTower3.cpp
+    enemyTower3.cpp \
+    Bullet2.cpp
 
 HEADERS  += \
     Game.h \
@@ -40,7 +41,8 @@ HEADERS  += \
     Bullet3.h \
     TBullet1.h \
     enemyTower2.h \
-    enemyTower3.h
+    enemyTower3.h \
+    Bullet2.h
 
 FORMS    +=
 

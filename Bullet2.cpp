@@ -5,11 +5,12 @@
 #include <QLine>
 #include <QList>
 #include "Enemy1.h"
-#include"Bullet3.h"
+#include "enemyTower1.h"
+#include"Bullet2.h"
 
 extern Game * game;
 
-Bullet3::Bullet3(QGraphicsItem *parent): QObject(),QGraphicsPixmapItem(parent){
+Bullet2::Bullet2(QGraphicsItem *parent): QObject(),QGraphicsPixmapItem(parent){
 
     // set graphics
     setPixmap(QPixmap(":images/bullet.jpg"));
@@ -19,28 +20,28 @@ Bullet3::Bullet3(QGraphicsItem *parent): QObject(),QGraphicsPixmapItem(parent){
     move_timer->start(10);
 }
 
-Bullet3::~Bullet3(){
+Bullet2::~Bullet2(){
     // delete timer
     move_timer->stop();
     delete move_timer;
 }
 
-void Bullet3::move(){
-    double slope = 4;
+void Bullet2::move(){
+    double slope =4;
     double theta = rotation();
     double dy = slope * qSin(qDegreesToRadians(theta));
     double dx = slope * qCos(qDegreesToRadians(theta));
-    this ->setPos(x()+dx,y()+dy);
+    this->setPos(x()+dx,y()+dy);
 
     //delete after collide with enemy
     QList <QGraphicsItem*>coenemy = this -> collidingItems();
     int a = coenemy.size();
     for(int i = 0;i<a;i++){
-        if(typeid(*(coenemy[i])) == typeid(Enemy1)||this->x()>2000||this->x()<-500){
+        if(typeid(*(coenemy[i])) == typeid(Enemy1)||typeid(*(coenemy[i])) == typeid(enemyTower1)||this->x()>2000||this->x()<-500){
 
               scene() -> removeItem(this);
               delete this;
               break;
-          }
-      }
+     }
+  }
 }
