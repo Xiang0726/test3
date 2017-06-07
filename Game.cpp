@@ -11,13 +11,15 @@
 #include"enemyTower2.h"
 #include"enemyTower3.h"
 #include<QLabel>
+#include<QTime>
+#include<stdlib.h>
 
 int Game::a = 0;
 int Game::b = 0;
 extern Game * game;
 
 Game::Game(){
-
+    qsrand(time(NULL));
     // create scene
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,800,600);
@@ -42,26 +44,22 @@ Game::Game(){
     button = new QPushButton("close");
     scene->addWidget(button);
     connect(button, SIGNAL(clicked()), this, SLOT(test()));
+
+    button1 = new QPushButton("deck1");
+    button1 ->setGeometry(50,500,100,100);
+    scene->addWidget(button1);
+    connect(button1, SIGNAL(clicked()), this, SLOT(chose1()));
+
+    button10 = new QPushButton("deck1");
+    button10 ->setGeometry(150,500,100,100);
+    scene->addWidget(button10);
+    connect(button10, SIGNAL(clicked()), this, SLOT(choose1()));
+
 }
 
-    // chose minion type
-void Game::keyPressEvent(QKeyEvent *eventnumber){
-    if(eventnumber->key() == Qt::Key_1){
-        id = 1;
-    }
-    else if(eventnumber ->key() == Qt::Key_2){
-        id = 2;
-    }
-    else if(eventnumber ->key() == Qt::Key_3){
-        id = 3;
-    }
-    else if(eventnumber ->key() == Qt::Key_4){
-        id = 4;
-    }
-    else if(eventnumber ->key() == Qt::Key_5){
-        id = 5;
-    }
-}
+
+
+
 
 void Game::final_lose(){
    if(b==3){
@@ -75,6 +73,254 @@ void Game::final_lose(){
     lose->setGeometry(200,200,200,50);
     scenelose->addWidget(lose);
    }
+}
+
+void Game::chose1()
+{
+    id = 1;
+    int aa = qrand()%4+1;
+    //delete button1;
+    if(aa==1){
+        button1 = new QPushButton("deck1");
+        button1 ->setGeometry(50,500,100,100);
+        scene->addWidget(button1);
+        connect(button1, SIGNAL(clicked()), this, SLOT(chose1()));
+       }
+    if(aa==2){
+        button2 = new QPushButton("deck2");
+        button2 ->setGeometry(50,500,100,100);
+        scene->addWidget(button2);
+        connect(button2, SIGNAL(clicked()), this, SLOT(chose2()));
+       }
+    if(aa==3){
+        button3 = new QPushButton("deck3");
+        button3 ->setGeometry(50,500,100,100);
+        scene->addWidget(button3);
+        connect(button3, SIGNAL(clicked()), this, SLOT(chose3()));
+       }
+    if(aa==4){
+        button4 = new QPushButton("deck4");
+        button4 ->setGeometry(50,500,100,100);
+        scene->addWidget(button4);
+        connect(button4, SIGNAL(clicked()), this, SLOT(chose4()));
+    }
+}
+
+void Game::chose2()
+{
+    id = 2;
+    int aa = qrand()%4+1;
+    //delete button2;
+    if(aa==1){
+        button1 = new QPushButton("deck1");
+        button1 ->setGeometry(50,500,100,100);
+        scene->addWidget(button1);
+        connect(button1, SIGNAL(clicked()), this, SLOT(chose1()));
+       }
+    if(aa==2){
+        button2 = new QPushButton("deck2");
+        button2 ->setGeometry(50,500,100,100);
+        scene->addWidget(button2);
+        connect(button2, SIGNAL(clicked()), this, SLOT(chose2()));
+       }
+    if(aa==3){
+        button3 = new QPushButton("deck3");
+        button3 ->setGeometry(50,500,100,100);
+        scene->addWidget(button3);
+        connect(button3, SIGNAL(clicked()), this, SLOT(chose3()));
+       }
+    if(aa==4){
+        button4 = new QPushButton("deck4");
+        button4 ->setGeometry(50,500,100,100);
+        scene->addWidget(button4);
+        connect(button4, SIGNAL(clicked()), this, SLOT(chose4()));
+    }
+}
+
+void Game::chose3()
+{
+    id = 3;
+    int aa = qrand()%4+1;
+    //delete button3;
+    if(aa==1){
+        button1 = new QPushButton("deck1");
+        button1 ->setGeometry(50,500,100,100);
+        scene->addWidget(button1);
+        connect(button1, SIGNAL(clicked()), this, SLOT(chose1()));
+       }
+    if(aa==2){
+        button2 = new QPushButton("deck2");
+        button2 ->setGeometry(50,500,100,100);
+        scene->addWidget(button2);
+        connect(button2, SIGNAL(clicked()), this, SLOT(chose2()));
+       }
+    if(aa==3){
+        button3 = new QPushButton("deck3");
+        button3 ->setGeometry(50,500,100,100);
+        scene->addWidget(button3);
+        connect(button3, SIGNAL(clicked()), this, SLOT(chose3()));
+       }
+    if(aa==4){
+        button4 = new QPushButton("deck4");
+        button4 ->setGeometry(50,500,100,100);
+        scene->addWidget(button4);
+        connect(button4, SIGNAL(clicked()), this, SLOT(chose4()));
+    }
+}
+
+void Game::chose4()
+{
+    id = 4;
+    int aa = qrand()%4+1;
+    //delete button4;
+    if(aa==1){
+        button1 = new QPushButton("deck1");
+        button1 ->setGeometry(50,500,100,100);
+        scene->addWidget(button1);
+        connect(button1, SIGNAL(clicked()), this, SLOT(chose1()));
+       }
+    if(aa==2){
+        button2 = new QPushButton("deck2");
+        button2 ->setGeometry(50,500,100,100);
+        scene->addWidget(button2);
+        connect(button2, SIGNAL(clicked()), this, SLOT(chose2()));
+       }
+    if(aa==3){
+        button3 = new QPushButton("deck3");
+        button3 ->setGeometry(50,500,100,100);
+        scene->addWidget(button3);
+        connect(button3, SIGNAL(clicked()), this, SLOT(chose3()));
+       }
+    if(aa==4){
+        button4 = new QPushButton("deck4");
+        button4 ->setGeometry(50,500,100,100);
+        scene->addWidget(button4);
+        connect(button4, SIGNAL(clicked()), this, SLOT(chose4()));
+    }
+}
+
+void Game::choose1()
+{
+    id = 1;
+    int bb = qrand()%4+1;
+    //delete button1;
+    if(bb==1){
+        button10 = new QPushButton("deck1");
+        button10->setGeometry(150,500,100,100);
+        scene->addWidget(button10);
+        connect(button10, SIGNAL(clicked()), this, SLOT(choose1()));
+       }
+    if(bb==2){
+        button20 = new QPushButton("deck2");
+        button20 ->setGeometry(150,500,100,100);
+        scene->addWidget(button20);
+        connect(button20, SIGNAL(clicked()), this, SLOT(choose2()));
+       }
+    if(bb==3){
+        button30 = new QPushButton("deck3");
+        button30 ->setGeometry(150,500,100,100);
+        scene->addWidget(button30);
+        connect(button30, SIGNAL(clicked()), this, SLOT(choose3()));
+       }
+    if(bb==4){
+        button40 = new QPushButton("deck4");
+        button40 ->setGeometry(150,500,100,100);
+        scene->addWidget(button40);
+        connect(button40, SIGNAL(clicked()), this, SLOT(choose4()));
+    }
+}
+
+void Game::choose2()
+{
+    id = 2;
+    int bb = qrand()%4+1;
+    //delete button2;
+    if(bb==1){
+        button10 = new QPushButton("deck1");
+        button10 ->setGeometry(150,500,100,100);
+        scene->addWidget(button10);
+        connect(button10, SIGNAL(clicked()), this, SLOT(choose1()));
+       }
+    if(bb==2){
+        button20 = new QPushButton("deck2");
+        button20 ->setGeometry(150,500,100,100);
+        scene->addWidget(button20);
+        connect(button20, SIGNAL(clicked()), this, SLOT(choose2()));
+       }
+    if(bb==3){
+        button30 = new QPushButton("deck3");
+        button30 ->setGeometry(150,500,100,100);
+        scene->addWidget(button30);
+        connect(button30, SIGNAL(clicked()), this, SLOT(choose3()));
+       }
+    if(bb==4){
+        button40 = new QPushButton("deck4");
+        button40 ->setGeometry(150,500,100,100);
+        scene->addWidget(button40);
+        connect(button40, SIGNAL(clicked()), this, SLOT(choose4()));
+    }
+}
+
+void Game::choose3()
+{
+    id = 3;
+    int bb = qrand()%4+1;
+    //delete button3;
+    if(bb==1){
+        button10 = new QPushButton("deck1");
+        button10 ->setGeometry(150,500,100,100);
+        scene->addWidget(button10);
+        connect(button10, SIGNAL(clicked()), this, SLOT(choose1()));
+       }
+    if(bb==2){
+        button20 = new QPushButton("deck2");
+        button20 ->setGeometry(150,500,100,100);
+        scene->addWidget(button20);
+        connect(button20, SIGNAL(clicked()), this, SLOT(choose2()));
+       }
+    if(bb==3){
+        button30 = new QPushButton("deck3");
+        button30 ->setGeometry(150,500,100,100);
+        scene->addWidget(button30);
+        connect(button30, SIGNAL(clicked()), this, SLOT(choose3()));
+       }
+    if(bb==4){
+        button40 = new QPushButton("deck4");
+        button40 ->setGeometry(150,500,100,100);
+        scene->addWidget(button40);
+        connect(button40, SIGNAL(clicked()), this, SLOT(choose4()));
+    }
+}
+
+void Game::choose4()
+{
+    id = 4;
+    int bb = qrand()%4+1;
+    //delete button4;
+    if(bb==1){
+        button10 = new QPushButton("deck1");
+        button10 ->setGeometry(150,500,100,100);
+        scene->addWidget(button10);
+        connect(button10, SIGNAL(clicked()), this, SLOT(choose1()));
+       }
+    if(bb==2){
+        button20 = new QPushButton("deck2");
+        button20 ->setGeometry(150,500,100,100);
+        scene->addWidget(button20);
+        connect(button20, SIGNAL(clicked()), this, SLOT(choose2()));
+       }
+    if(bb==3){
+        button30 = new QPushButton("deck3");
+        button30 ->setGeometry(150,500,100,100);
+        scene->addWidget(button30);
+        connect(button30, SIGNAL(clicked()), this, SLOT(choose3()));
+       }
+    if(bb==4){
+        button40 = new QPushButton("deck4");
+        button40 ->setGeometry(150,500,100,100);
+        scene->addWidget(button40);
+        connect(button40, SIGNAL(clicked()), this, SLOT(choose4()));
+    }
 }
 
 void Game::test()
@@ -101,6 +347,7 @@ void Game::final_win(){
 }
 
 void Game::mousePressEvent(QMouseEvent *event){
+
     if(id == 1){
     // create minion1
     Minion1 * minion = new Minion1();
@@ -125,4 +372,5 @@ void Game::mousePressEvent(QMouseEvent *event){
     minion->setPos(event->x()-250,event->y());
     scene->addItem(minion);
     }
+    id = 0;
 }
