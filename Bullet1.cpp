@@ -17,14 +17,12 @@ Bullet1::Bullet1(QGraphicsItem *parent): QObject(),QGraphicsPixmapItem(parent){
     // connect a timer to move()
     connect(move_timer,SIGNAL(timeout()),this,SLOT(move()));
     move_timer->start(10);
-
 }
 
 Bullet1::~Bullet1(){
     // delete timer
     move_timer->stop();
     delete move_timer;
-
 }
 
 void Bullet1::move(){
@@ -46,4 +44,3 @@ void Bullet1::move(){
      }
    }
  }
-

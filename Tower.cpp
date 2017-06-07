@@ -15,7 +15,7 @@ extern Game * game;
 Tower::Tower(QGraphicsItem *parent): QObject(),  QGraphicsPixmapItem(parent){
 
     // set graphics
-    setPixmap(QPixmap(":/images/tower.png"));
+    setPixmap(QPixmap(":/images/ttower.png"));
 
     // craet points vector
     QVector<QPointF> points;
@@ -23,7 +23,7 @@ Tower::Tower(QGraphicsItem *parent): QObject(),  QGraphicsPixmapItem(parent){
            << QPointF (1,3) << QPointF (0,2) << QPointF (0,1);
 
     // scale
-    int scale = 50;
+    int scale = 40;
     for(size_t a=0,n=points.size();a<n;a++){
           points[a] = points[a] * scale;
       }
@@ -38,7 +38,7 @@ Tower::Tower(QGraphicsItem *parent): QObject(),  QGraphicsPixmapItem(parent){
     QPointF polygon_center(1.5,1.5);
     polygon_center = polygon_center * scale;
     polygon_center = mapToScene(polygon_center);
-    QPointF tower_center (x()+30,y()+55);
+    QPointF tower_center (x()+55,y()+45);
     QLineF line(polygon_center,tower_center);
     attack_area->setPos(x()+line.dx(),y()+line.dy());
 

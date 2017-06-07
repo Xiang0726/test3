@@ -22,6 +22,7 @@ public:
 
 public slots:
     void move();
+    void hurt();
 
 
 

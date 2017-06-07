@@ -14,6 +14,9 @@
 #include "Bullet10.h"
 #include"Bullet3.h"
 #include"enemyTower1.h"
+#include"TBullet1.h"
+#include"enemyTower2.h"
+#include"enemyTower3.h"
 extern Game * game;
 
 Minion3::Minion3(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
@@ -21,7 +24,7 @@ Minion3::Minion3(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
     hp = 50;
 
     // draw pic
-    setPixmap(QPixmap(":images/minion3.jpg"));
+    setPixmap(QPixmap(":images/EE3.png"));
 
     // set timer
     connect(move_timer,SIGNAL(timeout()),this,SLOT(move()));
@@ -38,7 +41,7 @@ Minion3::Minion3(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
 
     // scale polygon
     int i,n;
-    int scale = 80;
+    int scale = 40;
     for(i=0,n=points.size();i<n;i++){
        points[i]=points[i]*scale;
    }
@@ -50,7 +53,7 @@ Minion3::Minion3(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
     QPointF poly_center(1.5,1.5);
     poly_center = poly_center * scale;
     poly_center = mapToScene(poly_center);
-    QPointF Minion_center(x()+28,y()+40);
+    QPointF Minion_center(x()+40,y()+45);
     QLineF ln(poly_center,Minion_center);
     attack_area->setPos(x()+ln.dx(),y()+ln.dy());
 }
@@ -89,6 +92,20 @@ void Minion3::move(){
                      has = true;
                      setPos(x()-10,y());
          }}
+
+
+
+         else if(dynamic_cast<enemyTower2*>(colliding_items[i])){
+             QLineF ln(this->pos(),colliding_items[i]->pos());
+             int distance = ln.length();
+
+                 if(distance<=closedistance){
+                     closedistance = distance;
+                     target = colliding_items[i]->pos();
+                     has = true;
+                     setPos(x()-10,y());
+         }}
+
          else if( dynamic_cast<Enemy1*>(colliding_items[i])){
          QLineF ln(this->pos(),colliding_items[i]->pos());
          int distance = ln.length();
@@ -99,6 +116,16 @@ void Minion3::move(){
                  has = true;
                }
             }
+         else if(dynamic_cast<enemyTower3*>(colliding_items[i])){
+             QLineF ln(this->pos(),colliding_items[i]->pos());
+             int distance = ln.length();
+
+                 if(distance<=closedistance){
+                     closedistance = distance;
+                     target = colliding_items[i]->pos();
+                     has = true;
+                     setPos(x()-10,y());
+         }}
          else if(dynamic_cast<Minion3*>(colliding_items[i])==this){ continue;}
 
          else if(dynamic_cast<Bullet10*>(colliding_items[i])){
@@ -118,5 +145,14 @@ void Minion3::move(){
      if (pos().x()>1300){
              scene()->removeItem(this);
              delete this;
-                        }
      }
+}
+
+void Minion3::hurt(){
+    QList<QGraphicsItem *> colliding_items = attack_area -> collidingItems();
+    for (int i = 0, n = colliding_items.size(); i < n; ++i)
+    {
+        if(dynamic_cast<TBullet1*>(colliding_items[i])){ this->hp--; }
+        else if(dynamic_cast<Bullet10*>(colliding_items[i])){ this->hp--; }
+    }
+}

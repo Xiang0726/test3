@@ -7,7 +7,10 @@
 #include <QKeyEvent>
 #include "Minion2.h"
 #include <Enemy1.h>
+#include<QPushButton>
+
 class Game: public QGraphicsView{
+    Q_OBJECT
 public:
     // member functions
     Game();
@@ -16,13 +19,18 @@ public:
     int id;
     void final_win();
     void final_lose();
-
     // member attributes
     QGraphicsScene * scene;
     QGraphicsScene * scenewin;
     QGraphicsScene * scenelose;
+    QGraphicsScene * test1;
+
+    QPushButton * button;
     static int a;
     static int b;
+public slots:
+    void test();
+
 };
 
 

@@ -23,7 +23,7 @@ Minion1::Minion1(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
     hp = 10;
 
     // draw pic
-    setPixmap(QPixmap(":images/Minion.png"));
+    setPixmap(QPixmap(":images/EE1.png"));
 
     // set timer for move
     connect(move_timer,SIGNAL(timeout()),this,SLOT(move()));
@@ -40,7 +40,7 @@ Minion1::Minion1(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
 
     // scale polygon
     int i,n;
-    int scale = 80;
+    int scale = 40;
     for(i=0,n=points.size();i<n;i++){
        points[i]=points[i]*scale;
 }
@@ -52,7 +52,7 @@ Minion1::Minion1(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
     QPointF poly_center(1.5,1.5);
     poly_center = poly_center * scale;
     poly_center = mapToScene(poly_center);
-    QPointF Minion_center(x()+28,y()+40);
+    QPointF Minion_center(x()+40,y()+40);
     QLineF ln(poly_center,Minion_center);
     attack_area->setPos(x()+ln.dx(),y()+ln.dy());
 }

@@ -10,6 +10,7 @@ class Minion2 : public QObject,public QGraphicsPixmapItem{
 
 public:
     Minion2(QGraphicsItem * parent=0);
+    ~Minion2();
     QGraphicsPolygonItem *attack_area;
     bool has;
     int team;

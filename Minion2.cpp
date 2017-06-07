@@ -21,7 +21,7 @@ Minion2::Minion2(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
     hp = 10;
 
     // draw pic
-    setPixmap(QPixmap(":images/minionred.jpg"));
+    setPixmap(QPixmap(":images/EE2.png"));
 
     // set timer for move
     connect(move_timer,SIGNAL(timeout()),this,SLOT(move()));
@@ -38,7 +38,7 @@ Minion2::Minion2(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
 
     // scale polygon
     int i,n;
-    int scale = 60;
+    int scale = 40;
     for(i=0,n=points.size();i<n;i++){
        points[i]=points[i]*scale;
     }
@@ -50,9 +50,17 @@ Minion2::Minion2(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
     QPointF poly_center(1.5,1.5);
     poly_center = poly_center * scale;
     poly_center = mapToScene(poly_center);
-    QPointF Minion_center(x()+28,y()+40);
+    QPointF Minion_center(x()+40,y()+50);
     QLineF ln(poly_center,Minion_center);
     attack_area->setPos(x()+ln.dx(),y()+ln.dy());
+}
+
+Minion2::~Minion2(){
+    // delete timer
+    move_timer->stop();
+    delete move_timer;
+    hurt_timer->stop();
+    delete hurt_timer;
 }
 
 void Minion2::attack(){

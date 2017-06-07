@@ -38,6 +38,10 @@ Game::Game(){
     scene->addItem(t1);
     scene->addItem(t2);
     scene->addItem(t3);
+
+    button = new QPushButton("close");
+    scene->addWidget(button);
+    connect(button, SIGNAL(clicked()), this, SLOT(test()));
 }
 
     // chose minion type
@@ -70,7 +74,14 @@ void Game::final_lose(){
     lose->setText("you lose the idiotic game");
     lose->setGeometry(200,200,200,50);
     scenelose->addWidget(lose);
-           }
+   }
+}
+
+void Game::test()
+{
+   test1 = new QGraphicsScene();
+   test1->setSceneRect(0,0,800,600);
+   setScene(test1);
 }
 
 void Game::final_win(){
