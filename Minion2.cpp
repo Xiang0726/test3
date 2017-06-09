@@ -18,7 +18,7 @@ extern Game * game;
 Minion2::Minion2(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
 
     // define HP
-    hp = 10;
+    hp = 15;
 
     // draw pic
     setPixmap(QPixmap(":images/EE2.png"));
@@ -29,7 +29,7 @@ Minion2::Minion2(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
 
     // set timer for hurt
     connect(hurt_timer,SIGNAL(timeout()),this,SLOT(hurt()));
-    hurt_timer->start(200);
+    hurt_timer->start(100);
 
     // create a polygon
     QVector<QPointF> points;
@@ -120,6 +120,8 @@ void Minion2::move(){
               }
            }
         else if(dynamic_cast<Minion2*>(colliding_items[i])==this){ continue;}
+
+
     }
 
     if(has == true){

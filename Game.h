@@ -8,6 +8,7 @@
 #include "Minion2.h"
 #include <Enemy1.h>
 #include<QPushButton>
+#include "fog.h"
 
 class Game: public QGraphicsView{
     Q_OBJECT
@@ -37,6 +38,7 @@ public:
     QPushButton * button40;
     static int a;
     static int b;
+    QTimer * appear_timer= new QTimer(this);
 public slots:
     void test();
     void chose1();
@@ -47,6 +49,7 @@ public slots:
     void choose2();
     void choose3();
     void choose4();
+    void appear();
 };
 
 

@@ -66,7 +66,7 @@ double enemyTower3::distance_to(QGraphicsItem *item){
 void enemyTower3::attack_target(){
     TBullet1 * bullet = new TBullet1();
     bullet->setPos(x(),y());
-    QLineF ln(QPointF(x(),y()),attack_dest);
+    QLineF ln(QPointF(x(),y()),QPointF(attack_dest.x()+30,attack_dest.y()+30));
     int angle = -1 * ln.angle();
     bullet->setRotation(angle);
     game->scene->addItem(bullet);

@@ -27,7 +27,9 @@ SOURCES += main.cpp \
     enemyTower2.cpp \
     enemyTower3.cpp \
     Bullet2.cpp \
-    Fireball.cpp
+    Fireball.cpp \
+    fog.cpp \
+    Minion4.cpp
 
 HEADERS  += \
     Game.h \
@@ -44,7 +46,9 @@ HEADERS  += \
     enemyTower2.h \
     enemyTower3.h \
     Bullet2.h \
-    Fireball.h
+    Fireball.h \
+    fog.h \
+    Minion4.h
 
 FORMS    +=
 

@@ -21,7 +21,7 @@ extern Game * game;
 
 Minion3::Minion3(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
     // define HP
-    hp = 50;
+    hp = 30;
 
     // draw pic
     setPixmap(QPixmap(":images/EE3.png"));
@@ -32,7 +32,7 @@ Minion3::Minion3(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
 
     // set timer for hurt
     connect(hurt_timer,SIGNAL(timeout()),this,SLOT(hurt()));
-    hurt_timer->start(200);
+    hurt_timer->start(100);
 
     // create a polygon
     QVector<QPointF> points;

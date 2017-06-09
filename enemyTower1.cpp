@@ -12,6 +12,7 @@
 #include"Minion1.h"
 #include"Minion3.h"
 #include "Bullet3.h"
+#include"Fog.h"
 extern Game * game;
 enemyTower1::enemyTower1(QGraphicsItem *parent): QObject(),  QGraphicsPixmapItem(parent){
 
@@ -65,13 +66,15 @@ double enemyTower1::distance_to(QGraphicsItem *item){
 }
 
 void enemyTower1::attack_target(){
+
    TBullet1 * bullet = new TBullet1();
    bullet->setPos(x(),y());
-   QLineF ln(QPointF(x(),y()),attack_dest);
+   QLineF ln(QPointF(x(),y()),QPointF(attack_dest.x()+30,attack_dest.y()+30));
    int angle = -1 * ln.angle();
    bullet->setRotation(angle);
    game->scene->addItem(bullet);
 }
+
 
 enemyTower1::~enemyTower1(){
     // delete timer
@@ -133,7 +136,7 @@ void enemyTower1::acquire_target(){
    else if(b1||b3){
             this->hp--;
              }
-    }
-    attack_dest= closest_point;
+      }
+    attack_dest = closest_point;   
     attack_target();
 }

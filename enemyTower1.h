@@ -16,6 +16,7 @@ public:
     QGraphicsPolygonItem * attack_area;
 
     QPointF attack_dest;
+    QPointF AA;
 
     double distance_to(QGraphicsItem * item);
 

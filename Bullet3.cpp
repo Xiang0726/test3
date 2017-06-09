@@ -6,7 +6,9 @@
 #include <QList>
 #include "Enemy1.h"
 #include"Bullet3.h"
-
+#include"enemyTower1.h"
+#include"enemyTower2.h"
+#include"enemyTower3.h"
 extern Game * game;
 
 Bullet3::Bullet3(QGraphicsItem *parent): QObject(),QGraphicsPixmapItem(parent){
@@ -36,7 +38,8 @@ void Bullet3::move(){
     QList <QGraphicsItem*>coenemy = this -> collidingItems();
     int a = coenemy.size();
     for(int i = 0;i<a;i++){
-        if(typeid(*(coenemy[i])) == typeid(Enemy1)||this->x()>2000||this->x()<-500){
+        if(typeid(*(coenemy[i])) == typeid(Enemy1)||this->x()>2000||this->x()<-500||typeid(*(coenemy[i])) == typeid(enemyTower1)
+                ||typeid(*(coenemy[i])) == typeid(enemyTower2)||typeid(*(coenemy[i])) == typeid(enemyTower3)){
 
               scene() -> removeItem(this);
               delete this;

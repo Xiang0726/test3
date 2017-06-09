@@ -13,6 +13,8 @@
 #include<QLabel>
 #include<QTime>
 #include<stdlib.h>
+#include"Fog.h"
+#include"Minion4.h"
 
 int Game::a = 0;
 int Game::b = 0;
@@ -29,11 +31,11 @@ Game::Game(){
     Tower * t = new Tower();
     t->setPos(0,50);
     enemyTower1 * t1 = new enemyTower1();
-    t1->setPos(700,35);
+    t1->setPos(900,35);
     enemyTower2 * t2 = new enemyTower2();
-    t2->setPos(850,275);
+    t2->setPos(950,275);
     enemyTower3 * t3 = new enemyTower3();
-    t3->setPos(700,515);
+    t3->setPos(900,515);
 
     // add tower to scene
     scene->addItem(t);
@@ -54,6 +56,9 @@ Game::Game(){
     button10 ->setGeometry(150,500,100,100);
     scene->addWidget(button10);
     connect(button10, SIGNAL(clicked()), this, SLOT(choose1()));
+
+    connect(appear_timer,SIGNAL(timeout()),this,SLOT(appear()));
+    appear_timer->start(0.001);
 
 }
 
@@ -323,6 +328,7 @@ void Game::choose4()
     }
 }
 
+
 void Game::test()
 {
    test1 = new QGraphicsScene();
@@ -346,6 +352,14 @@ void Game::final_win(){
             }
 }
 
+void Game::appear(){
+    int x = qrand()%450+350;
+    int y = qrand()%600;
+    fog * f = new fog();
+    f ->setPos(x,y);
+    scene ->addItem(f);
+}
+
 void Game::mousePressEvent(QMouseEvent *event){
 
     if(id == 1){
@@ -363,6 +377,12 @@ void Game::mousePressEvent(QMouseEvent *event){
     if(id == 3){
     // create a minion3
     Minion3 * minion = new Minion3();
+    minion->setPos(event->x()-250,event->y());
+    scene->addItem(minion);
+    }
+    if(id == 4){
+    // create a minion4
+    Minion4 * minion = new Minion4();
     minion->setPos(event->x()-250,event->y());
     scene->addItem(minion);
     }
